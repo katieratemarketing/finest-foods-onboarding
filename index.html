@@ -1,0 +1,427 @@
+<title>Finest Foods Onboarding</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;600;800&family=Geist+Mono:wght@400;600&display=swap');
+
+  :root {
+    --ink: #111111;
+    --white: #FFFFFF;
+    --lime: #C7F23E;
+    --lime-hover: #D6F86A;
+    --lime-press: #A6D02B;
+    --lime-tint: #ECFBB8;
+    --lime-tint-light: #F7FDE4;
+    --text-on-lime: #223000;
+    --neutral-800: #1C1C1E;
+    --neutral-600: #48484A;
+    --neutral-400: #8E8E93;
+    --neutral-200: #D1D1D6;
+    --neutral-100: #E5E5EA;
+    --neutral-50: #F2F2F7;
+    --neutral-25: #F7F7F8;
+    --bg: var(--white);
+    --fg: var(--ink);
+    --accent: var(--lime);
+    --subtle: var(--neutral-600);
+    --border: var(--neutral-100);
+    --card-bg: var(--neutral-25);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: var(--neutral-800);
+      --fg: #F2F2F7;
+      --subtle: #AEAEB2;
+      --border: #38383A;
+      --card-bg: #2C2C2E;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: var(--neutral-800);
+    --fg: #F2F2F7;
+    --subtle: #AEAEB2;
+    --border: #38383A;
+    --card-bg: #2C2C2E;
+    color-scheme: dark;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: 'Geist', system-ui, -apple-system, sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+    max-width: 680px;
+    margin: 0 auto;
+    padding-inline: 24px;
+    padding-block: 0;
+  }
+
+  /* Cover band */
+  .cover {
+    background: var(--ink);
+    color: var(--white);
+    margin-inline: -24px;
+    padding: 48px 24px 40px;
+    margin-top: -env(safe-area-inset-top, 0px);
+    padding-top: calc(48px + env(safe-area-inset-top, 0px));
+  }
+
+  .cover .wordmark {
+    font-family: 'Geist', system-ui, sans-serif;
+    font-weight: 800;
+    font-size: 14px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--lime);
+    margin-bottom: 32px;
+  }
+
+  .cover h1 {
+    font-family: 'Geist', system-ui, sans-serif;
+    font-weight: 800;
+    font-size: clamp(28px, 5vw, 36px);
+    line-height: 1.15;
+    margin: 0 0 8px;
+    color: var(--white);
+    text-wrap: balance;
+  }
+
+  .cover .subtitle {
+    font-size: 16px;
+    color: var(--neutral-400);
+    margin: 0;
+  }
+
+  .cover .client-name {
+    color: var(--lime);
+  }
+
+  /* Intro */
+  .intro {
+    padding: 32px 0 8px;
+    font-size: 15px;
+    color: var(--subtle);
+    line-height: 1.7;
+  }
+
+  /* Section */
+  .section {
+    margin-bottom: 32px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--accent);
+  }
+
+  .section-number {
+    font-family: 'Geist Mono', monospace;
+    font-weight: 600;
+    font-size: 13px;
+    background: var(--accent);
+    color: var(--text-on-lime);
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-family: 'Geist', system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    margin: 0;
+  }
+
+  /* Checklist */
+  .checklist {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 16px;
+    background: var(--card-bg);
+    border-radius: 12px;
+    font-size: 15px;
+    line-height: 1.5;
+    cursor: pointer;
+    transition: background 0.15s;
+    user-select: none;
+  }
+
+  .checklist li:hover {
+    background: var(--border);
+  }
+
+  .checklist li.checked {
+    opacity: 0.5;
+  }
+
+  .checklist li.checked .label {
+    text-decoration: line-through;
+  }
+
+  .checkbox {
+    width: 20px;
+    height: 20px;
+    border-radius: 6px;
+    border: 2px solid var(--neutral-200);
+    flex-shrink: 0;
+    margin-top: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+  }
+
+  .checked .checkbox {
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+
+  .checkbox svg {
+    display: none;
+    width: 12px;
+    height: 12px;
+  }
+
+  .checked .checkbox svg {
+    display: block;
+  }
+
+  .label {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .label .note {
+    display: block;
+    font-size: 13px;
+    color: var(--subtle);
+    margin-top: 2px;
+  }
+
+  /* Progress */
+  .progress-bar {
+    position: sticky;
+    top: env(safe-area-inset-top, 0px);
+    background: var(--bg);
+    padding: 16px 0 12px;
+    z-index: 10;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 24px;
+  }
+
+  .progress-track {
+    height: 4px;
+    background: var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 2px;
+    transition: width 0.3s ease;
+    width: 0%;
+  }
+
+  .progress-text {
+    font-family: 'Geist Mono', monospace;
+    font-size: 12px;
+    color: var(--subtle);
+    margin-top: 8px;
+    text-align: right;
+  }
+
+  /* Footer */
+  .footer {
+    margin-top: 48px;
+    padding: 32px 0;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    font-size: 13px;
+    color: var(--subtle);
+  }
+
+  .footer .contact {
+    font-family: 'Geist Mono', monospace;
+    font-size: 12px;
+    margin-top: 8px;
+    color: var(--neutral-400);
+  }
+</style>
+
+<div class="cover">
+  <div class="wordmark">Rate</div>
+  <h1>Onboarding Checklist</h1>
+  <p class="subtitle">Prepared for <span class="client-name">Francesca Poulis</span>, Finest Foods</p>
+</div>
+
+<div class="progress-bar">
+  <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+  <div class="progress-text" id="progressText">0 / 0 complete</div>
+</div>
+
+<p class="intro">
+  Hi Francesca. To get things moving, we need a few things from your side. Tick each item off as you go. If anything is unclear, just drop us a message.
+</p>
+
+<div class="section">
+  <div class="section-header">
+    <div class="section-number">01</div>
+    <h2 class="section-title">Contract &amp; Admin</h2>
+  </div>
+  <ul class="checklist">
+    <li onclick="toggle(this)">
+      <div class="checkbox"><svg viewBox="0 0 12 12" fill="none" stroke="#223000" stroke-width="2" stroke-linecap="round"><path d="M2.5 6.5L5 9L9.5 3.5"/></svg></div>
+      <div class="label">Return signed contract and SOW</div>
+    </li>
+    <li onclick="toggle(this)">
+      <div class="checkbox"><svg viewBox="0 0 12 12" fill="none" stroke="#223000" stroke-width="2" stroke-linecap="round"><path d="M2.5 6.5L5 9L9.5 3.5"/></svg></div>
+      <div class="label">Confirm preferred invoicing contact and address</div>
+    </li>
+  </ul>
+</div>
+
+<div class="section">
+  <div class="section-header">
+    <div class="section-number">02</div>
+    <h2 class="section-title">Brand Assets</h2>
+  </div>
+  <ul class="checklist">
+    <li onclick="toggle(this)">
+      <div class="checkbox"><svg viewBox="0 0 12 12" fill="none" stroke="#223000" stroke-width="2" stroke-linecap="round"><path d="M2.5 6.5L5 9L9.5 3.5"/></svg></div>
+      <div class="label">Brand guidelines document
+        <span class="note">Colours, fonts, logo usage, any do's and don'ts</span>
+      </div>
+    </li>
+    <li onclick="toggle(this)">
+      <div class="checkbox"><svg viewBox="0 0 12 12" fill="none" stroke="#223000" stroke-width="2" stroke-linecap="round"><path d="M2.5 6.5L5 9L9.5 3.5"/></svg></div>
+      <div class="label">Logo files for each brand
+        <span class="note">FARMA, LUCKY CUI and any sub-brands, in vector format (SVG, EPS or AI) if possible</span>
+      </div>
+    </li>
+    <li onclick="toggle(this)">
+      <div class="checkbox"><svg viewBox="0 0 12 12" fill="none" stroke="#223000" stroke-width="2" stroke-linecap="round"><path d="M2.5 6.5L5 9L9.5 3.5"/></svg></div>
+      <div class="label">Tone of voice or messaging documents
+        <span class="note">If you have anything written down, even informal notes</span>
+      </div>
+    </li>
+    <li onclick="toggle(this)">
+      <div class="checkbox"><svg viewBox="0 0 12 12" fill="none" stroke="#223000" stroke-width="2" stroke-linecap="round"><path d="M2.5 6.5L5 9L9.5 3.5"/></svg></div>
+      <div class="label">Product photography and lifestyle imagery
+        <span class="note">Any existing hi-res product shots, lifestyle content or video you'd like us to use</span>
+      </div>
+    </li>
+    <li onclick="toggle(this)">
+      <div class="checkbox"><svg viewBox="0 0 12 12" fill="none" stroke="#223000" stroke-width="2" stroke-linecap="round"><path d="M2.5 6.5L5 9L9.5 3.5"/></svg></div>
+      <div class="label">Competitor examples
+        <span class="note">Brands you admire or want to differentiate from</span>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<div class="section">
+  <div class="section-header">
+    <div class="section-number">03</div>
+    <h2 class="section-title">Platform Access</h2>
+  </div>
+  <ul class="checklist">
+    <li onclick="toggle(this)">
+      <div class="checkbox"><svg viewBox="0 0 12 12" fill="none" stroke="#223000" stroke-width="2" stroke-linecap="round"><path d="M2.5 6.5L5 9L9.5 3.5"/></svg></div>
+      <div class="label">Instagram access for @finestfoodsuk
+        <span class="note">Add us as a collaborator or share via Meta Business Suite</span>
+      </div>
+    </li>
+    <li onclick="toggle(this)">
+      <div class="checkbox"><svg viewBox="0 0 12 12" fill="none" stroke="#223000" stroke-width="2" stroke-linecap="round"><path d="M2.5 6.5L5 9L9.5 3.5"/></svg></div>
+      <div class="label">Google Analytics (GA4) access
+        <span class="note">Grant editor access to hello@ratemarketing.co.uk</span>
+      </div>
+    </li>
+    <li onclick="toggle(this)">
+      <div class="checkbox"><svg viewBox="0 0 12 12" fill="none" stroke="#223000" stroke-width="2" stroke-linecap="round"><path d="M2.5 6.5L5 9L9.5 3.5"/></svg></div>
+      <div class="label">Google Search Console access
+        <span class="note">Grant full user access to hello@ratemarketing.co.uk</span>
+      </div>
+    </li>
+    <li onclick="toggle(this)">
+      <div class="checkbox"><svg viewBox="0 0 12 12" fill="none" stroke="#223000" stroke-width="2" stroke-linecap="round"><path d="M2.5 6.5L5 9L9.5 3.5"/></svg></div>
+      <div class="label">Domain and hosting login details
+        <span class="note">Registrar, CMS admin and FTP/SSH if applicable</span>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<div class="section">
+  <div class="section-header">
+    <div class="section-number">04</div>
+    <h2 class="section-title">Sessions to Book</h2>
+  </div>
+  <ul class="checklist">
+    <li onclick="toggle(this)">
+      <div class="checkbox"><svg viewBox="0 0 12 12" fill="none" stroke="#223000" stroke-width="2" stroke-linecap="round"><path d="M2.5 6.5L5 9L9.5 3.5"/></svg></div>
+      <div class="label">Confirm kickoff session date
+        <span class="note">We'll send a calendar invite once confirmed</span>
+      </div>
+    </li>
+    <li onclick="toggle(this)">
+      <div class="checkbox"><svg viewBox="0 0 12 12" fill="none" stroke="#223000" stroke-width="2" stroke-linecap="round"><path d="M2.5 6.5L5 9L9.5 3.5"/></svg></div>
+      <div class="label">Confirm preferred day and time for weekly calls</div>
+    </li>
+    <li onclick="toggle(this)">
+      <div class="checkbox"><svg viewBox="0 0 12 12" fill="none" stroke="#223000" stroke-width="2" stroke-linecap="round"><path d="M2.5 6.5L5 9L9.5 3.5"/></svg></div>
+      <div class="label">Attend brand immersion session
+        <span class="note">A deep dive so our team fully understands your brands, audience and goals</span>
+      </div>
+    </li>
+    <li onclick="toggle(this)">
+      <div class="checkbox"><svg viewBox="0 0 12 12" fill="none" stroke="#223000" stroke-width="2" stroke-linecap="round"><path d="M2.5 6.5L5 9L9.5 3.5"/></svg></div>
+      <div class="label">Confirm photoshoot location availability
+        <span class="note">Factory or showroom access for product and lifestyle content</span>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<div class="footer">
+  <div>Rate Marketing</div>
+  <div class="contact">hello@ratemarketing.co.uk · Nottingham</div>
+</div>
+
+<script>
+  function toggle(li) {
+    li.classList.toggle('checked');
+    updateProgress();
+  }
+
+  function updateProgress() {
+    const items = document.querySelectorAll('.checklist li');
+    const checked = document.querySelectorAll('.checklist li.checked');
+    const pct = items.length ? (checked.length / items.length) * 100 : 0;
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressText').textContent = checked.length + ' / ' + items.length + ' complete';
+  }
+
+  updateProgress();
+</script>
